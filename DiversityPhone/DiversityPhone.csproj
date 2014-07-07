@@ -84,7 +84,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Market|AnyCPU'">
+    <OutputPath>bin\Market\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE;MARKET</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BugSense-WP7">
+      <HintPath>..\packages\BugSense.WP7.3.6.6.0\lib\sl4-wp71\BugSense-WP7.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=736440c9b414ea16, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Devices.Sensors" />
     <Reference Include="Microsoft.Live, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -224,6 +237,7 @@
     <Compile Include="LiveSDKTaskAsync\LiveConnectClientTaskAsync.cs" />
     <Compile Include="Ninject\ServiceModule.cs" />
     <Compile Include="Ninject\ViewModelModule.cs" />
+    <Compile Include="Services\Logging\BugSenseLogger.cs" />
     <Compile Include="Services\CloudStorageService.cs" />
     <Compile Include="Services\Logging\LogFile.cs" />
     <Compile Include="Services\Logging\NLogLogger.cs" />

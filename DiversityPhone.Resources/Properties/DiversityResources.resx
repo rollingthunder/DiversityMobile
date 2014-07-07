@@ -465,6 +465,15 @@ IPR and licenses with relation to DiversityMobile: http://www.diversitymobile.ne
   <data name="Settings_ConfirmReset" xml:space="preserve">
     <value>All diversity data you have not already uploaded will be lost!</value>
   </data>
+  <data name="Settings_Description_ErrorReporting" xml:space="preserve">
+    <value>Allows the App to automatically report information about Errors and Usage to the Developers. This allows us to monitor and improve the quality of the application and better help you with any issues that may arise. The data transmitted does NOT contain any personally identifiable information. </value>
+  </data>
+  <data name="Settings_Description_Localization" xml:space="preserve">
+    <value>Enables the inclusion of Geolocation information in the data recorded while using the app. </value>
+  </data>
+  <data name="Settings_Description_ReportID" xml:space="preserve">
+    <value>Allows your Login Name to be included with the error information that is transmitted to the developers. This allows us to pinpoint an issue a specific user is having in order to more quickly fix what is causing it. </value>
+  </data>
   <data name="Settings_Header_ButtonClear" xml:space="preserve">
     <value>clear db</value>
   </data>
@@ -477,6 +486,9 @@ IPR and licenses with relation to DiversityMobile: http://www.diversitymobile.ne
   <data name="Settings_Header_DownloadData" xml:space="preserve">
     <value>Download Data</value>
   </data>
+  <data name="Settings_Header_ErrorReporting" xml:space="preserve">
+    <value>Automatically Report Errors</value>
+  </data>
   <data name="Settings_Header_Info" xml:space="preserve">
     <value>About</value>
   </data>
@@ -488,6 +500,9 @@ IPR and licenses with relation to DiversityMobile: http://www.diversitymobile.ne
   </data>
   <data name="Settings_Header_Project" xml:space="preserve">
     <value>Project</value>
+  </data>
+  <data name="Settings_Header_ReportID" xml:space="preserve">
+    <value>Include User ID in Reports</value>
   </data>
   <data name="Settings_Header_Repository" xml:space="preserve">
     <value>Repository</value>

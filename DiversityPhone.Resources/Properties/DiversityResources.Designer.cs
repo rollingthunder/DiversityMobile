@@ -1084,6 +1084,33 @@ namespace DiversityPhone {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allows the App to automatically report information about Errors and Usage to the Developers. This allows us to monitor and improve the quality of the application and better help you with any issues that may arise. The data transmitted does NOT contain any personally identifiable information. .
+        /// </summary>
+        public static string Settings_Description_ErrorReporting {
+            get {
+                return ResourceManager.GetString("Settings_Description_ErrorReporting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enables the inclusion of Geolocation information in the data recorded while using the app. .
+        /// </summary>
+        public static string Settings_Description_Localization {
+            get {
+                return ResourceManager.GetString("Settings_Description_Localization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows your Login Name to be included with the error information that is transmitted to the developers. This allows us to pinpoint an issue a specific user is having in order to more quickly fix what is causing it. .
+        /// </summary>
+        public static string Settings_Description_ReportID {
+            get {
+                return ResourceManager.GetString("Settings_Description_ReportID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to clear db.
         /// </summary>
         public static string Settings_Header_ButtonClear {
@@ -1120,6 +1147,15 @@ namespace DiversityPhone {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically Report Errors.
+        /// </summary>
+        public static string Settings_Header_ErrorReporting {
+            get {
+                return ResourceManager.GetString("Settings_Header_ErrorReporting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Settings_Header_Info {
@@ -1152,6 +1188,15 @@ namespace DiversityPhone {
         public static string Settings_Header_Project {
             get {
                 return ResourceManager.GetString("Settings_Header_Project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include User ID in Reports.
+        /// </summary>
+        public static string Settings_Header_ReportID {
+            get {
+                return ResourceManager.GetString("Settings_Header_ReportID", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿namespace DiversityPhone.Model
+﻿using System.Collections;
+namespace DiversityPhone.Model
 {
     public static class SettingsMixin
     {
@@ -38,6 +39,8 @@
         public bool UseGPS { get; set; }
 
         public bool SaveMultimediaExternally { get; set; }
+        public bool SendErrorReports { get; set; }
+        public bool SendUserID { get; set; }
 
         public string HomeDBName { get; set; }
 
@@ -50,6 +53,29 @@
             return (Settings)this.MemberwiseClone();
         }
 
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Settings)
+            {
+                var other = obj as Settings;
+
+                return this.AgentName == other.AgentName &&
+                       this.AgentURI == other.AgentURI &&
+                       this.CurrentProject == other.CurrentProject &&
+                       this.CurrentProjectName == other.CurrentProjectName &&
+                       this.CurrentSeriesID == other.CurrentSeriesID &&
+                       this.HomeDBName == other.HomeDBName &&
+                       this.Password == other.Password &&
+                       this.SaveMultimediaExternally == other.SaveMultimediaExternally &&
+                       this.SendErrorReports == other.SendErrorReports &&
+                       this.SendUserID == other.SendUserID &&
+                       this.UseGPS == other.UseGPS &&
+                       this.UserName == other.UserName;
+            }
+
+            return false;
+        }
     }
 
 

@@ -1,4 +1,5 @@
 ﻿namespace DiversityPhone {
+    using BugSense;
     using DiversityPhone.Helper;
     using DiversityPhone.Interface;
     using DiversityPhone.Model;
@@ -12,10 +13,16 @@
     using System.Reactive.Concurrency;
     using System.Threading.Tasks;
     using System.Windows;
-    using ReactiveUI.NLog;
+    using BugSense.Core.Model;
 
     public partial class App : Application, IEnableLogger {
+        /// <summary>
+        /// Global flag, that signals the BugSenseLogger to log exceptions to BugSense
+        /// </summary>
+        public static bool EnableBugSense { get; private set; }
+
         public static IKernel Kernel { get; private set; }
+        public static IRxUIFullLogger Logger { get; private set; }
 
 
         private static ICurrentProfile _Profile = null;
@@ -86,10 +93,10 @@
             RxApp.InUnitTestRunnerOverride = false;
             RxApp.DeferredScheduler = DispatcherScheduler.Current;
             RxApp.TaskpoolScheduler = ThreadPoolScheduler.Instance;
-                       
+
             ReactiveUI.RxApp.LoggerFactory = (t) =>
             {
-                return new NLogLogger(NLog.LogManager.GetLogger(t.Name));
+                return new BugSenseLogger(NLog.LogManager.GetLogger(t.Name));
             };
 
             InitializeAsync();
@@ -105,6 +112,11 @@
             LogFile.Profile = Kernel.Get<ICurrentProfile>();
 
             Kernel.Load<ServiceModule>();
+
+            var settings = Kernel.Get<ISettingsService>();
+            settings.SettingsObservable()
+                .Subscribe(UpdateBugSense);
+
             Kernel.Load<ViewModelModule>();
 
             var notifications = Kernel.Get<INotificationService>();
@@ -130,6 +142,48 @@
         }
 
         public static event Action KernelInitialized;
+
+        private static void UpdateBugSense(Settings settings)
+        {
+            if (settings == null)
+            {
+                return;
+            }
+
+#if !MARKET
+            var handler = BugSenseHandler.Instance;
+
+            if (App.EnableBugSense != settings.SendErrorReports)
+            {
+                if (settings.SendErrorReports)
+                {
+                    if (!BugSenseHandler.IsInitialized)
+                    {
+                        handler.InitAndStartSession(new ExceptionManager(App.Current), RootFrame, "08ac272e");
+                    }
+                    else
+                    {
+                        handler.StartSession();
+                    }
+                }
+                else if (BugSenseHandler.IsInitialized)
+                {
+                    handler.CloseSession();
+                }
+
+                App.EnableBugSense = settings.SendErrorReports;
+            }
+
+            if (settings.SendUserID)
+            {
+               handler.AddCrashExtraData(new CrashExtraData() { Key = "login", Value = settings.UserName });
+            }
+            else
+            {
+                handler.ClearCrashExtraData();
+            }
+#endif
+        }
 
 
         // Code to execute when the application is launching (eg, from Start)
